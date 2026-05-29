@@ -1,0 +1,11 @@
+# ===========================================================
+#  FILE: requirements.txt
+#  PURPOSE: Python package dependencies for Cozy Café Flask server
+#  INSTALL:  pip install -r requirements.txt
+# ===========================================================
+
+# Flask: the lightweight web framework powering the server
+Flask==3.0.0
+
+# Werkzeug: Flask's underlying WSGI toolkit (auto-installed with Flask)
+Werkzeug==3.0.1

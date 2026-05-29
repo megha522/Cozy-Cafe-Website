@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cozy Café – Art of Coffee, Soul of Community</title>
+
+  <!-- Google Fonts: Cormorant Garamond + DM Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- CURSOR FOLLOWER -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- STEAM PARTICLES CANVAS -->
+  <canvas id="steamCanvas" class="steam-canvas"></canvas>
+
+  <!-- AMBIENT SOUND TOGGLE -->
+  <button class="ambient-toggle" id="ambientToggle" aria-label="Toggle ambient café sounds">
+    <i class="fas fa-volume-mute" id="soundIcon"></i>
+    <span>Café Sounds</span>
+  </button>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-emblem">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1"/>
+            <path d="M13 26c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M20 19v-3M17 17l1.5 2M23 17l-1.5 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="2.5" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div>
+        <span class="logo-text">Cozy Café</span>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">Story</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Visit</a></li>
+        <li><a href="#reserve" class="btn-reserve">Reserve a Table</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section class="hero" id="hero">
+    <!-- Real parallax background image layers -->
+    <div class="hero-bg-layer layer-sky" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')"></div>
+    <div class="hero-bg-layer layer-mid" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80')"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Floating coffee steam particles -->
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <!-- Floating glass cards in background -->
+    <div class="float-card float-card-1">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Coffee art" />
+    </div>
+    <div class="float-card float-card-2">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&q=80" alt="Latte" />
+    </div>
+    <div class="float-card float-card-3">
+      <img src="https://images.unsplash.com/photo-1568051243858-533a607809a5?w=200&q=80" alt="Pastry" />
+    </div>
+
+    <!-- Live stats ticker -->
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <span>☕ Served today: <strong id="cupCount">247</strong> cups</span>
+        <span class="ticker-sep">·</span>
+        <span>🌿 Beans sourced: Ethiopia · Colombia · Guatemala</span>
+        <span class="ticker-sep">·</span>
+        <span>⭐ Rating: 4.9/5 from 1,200+ reviews</span>
+        <span class="ticker-sep">·</span>
+        <span>☕ Served today: <strong>247</strong> cups</span>
+        <span class="ticker-sep">·</span>
+        <span>🌿 Beans sourced: Ethiopia · Colombia · Guatemala</span>
+        <span class="ticker-sep">·</span>
+        <span>⭐ Rating: 4.9/5 from 1,200+ reviews</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge-wrap">
+        <span class="hero-badge">Est. 2010 · Artisan Coffee · Bengaluru</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line-1">Where Every Cup</span>
+        <span class="title-line-2 italic-accent">Tells a Story</span>
+      </h1>
+      <p class="hero-tagline">Art of Coffee, Soul of Community</p>
+
+      <!-- Live mood indicator -->
+      <div class="live-mood">
+        <div class="mood-dot"></div>
+        <span>Café is <strong>cozy & warm</strong> right now · 14 guests inside</span>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#menu" class="btn btn-primary">
+          <i class="fas fa-mug-hot"></i>
+          <span>Explore Menu</span>
+        </a>
+        <a href="#reserve" class="btn btn-glass">
+          <i class="far fa-calendar-check"></i>
+          <span>Reserve a Table</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-label="Scroll down">
+      <span class="scroll-text">Scroll to discover</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT SECTION ===================== -->
+  <section class="about-section section" id="about">
+    <div class="about-backdrop" style="background-image: url('https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1920&q=80')"></div>
+    <div class="container">
+      <div class="about-grid fade-in">
+
+        <div class="about-visual-col">
+          <div class="about-img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800&q=80"
+              alt="Cozy Café interior — warm lighting, wooden furniture"
+              class="about-main-img"
+            />
+            <div class="about-img-badge glass-card">
+              <span class="badge-num">14</span>
+              <span class="badge-label">Years<br/>of craft</span>
+            </div>
+            <div class="about-img-float glass-card">
+              <i class="fas fa-award"></i>
+              <span>Best Café Bengaluru 2023</span>
+            </div>
+          </div>
+
+          <div class="about-secondary-imgs">
+            <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=400&q=80" alt="Coffee beans" class="about-sm-img" />
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80" alt="Coffee cup art" class="about-sm-img" />
+          </div>
+        </div>
+
+        <div class="about-text-col">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">More Than Just<br/><em>a Cup of Coffee</em></h2>
+
+          <p class="about-lead">
+            Tucked in the heart of Indiranagar, Cozy Café was born from a simple dream — 
+            to create a place where every cup tells a story.
+          </p>
+          <p>
+            Founded in 2010 by two friends and coffee obsessives, our café started as a 
+            tiny espresso bar in a repurposed Victorian building. Word spread fast — people 
+            didn't just come for the coffee, they came for the feeling of belonging.
+          </p>
+          <p>
+            We source directly from small family farms in Colombia, Ethiopia, and Guatemala. 
+            Always fair trade. Always freshly roasted. Every drink crafted with intention.
+          </p>
+
+          <!-- Origin map cards -->
+          <div class="origin-cards">
+            <div class="origin-card">
+              <img src="https://flagcdn.com/24x18/co.png" alt="Colombia" />
+              <div>
+                <strong>Colombia</strong>
+                <span>Huila, Cauca</span>
+              </div>
+            </div>
+            <div class="origin-card">
+              <img src="https://flagcdn.com/24x18/et.png" alt="Ethiopia" />
+              <div>
+                <strong>Ethiopia</strong>
+                <span>Yirgacheffe</span>
+              </div>
+            </div>
+            <div class="origin-card">
+              <img src="https://flagcdn.com/24x18/gt.png" alt="Guatemala" />
+              <div>
+                <strong>Guatemala</strong>
+                <span>Antigua</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num" data-target="14">0</span>
+              <span class="stat-plus">+</span>
+              <span class="stat-label">Years Brewing</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="200">0</span>
+              <span class="stat-plus">+</span>
+              <span class="stat-label">Daily Regulars</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="3">0</span>
+              <span class="stat-label">Bean Origins</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MENU SECTION ===================== -->
+  <section class="menu-section section" id="menu">
+    <div class="menu-bg-texture"></div>
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">What We Brew</span>
+        <h2 class="section-title">Menu <em>Highlights</em></h2>
+        <p class="section-subtitle">Handcrafted with love, served with warmth. Every item a small masterpiece.</p>
+      </div>
+
+      <!-- Menu Filter Tabs -->
+      <div class="menu-tabs fade-in" id="menuTabs">
+        <button class="menu-tab active" data-filter="all">All</button>
+        <button class="menu-tab" data-filter="coffee">Coffee</button>
+        <button class="menu-tab" data-filter="cold">Cold Drinks</button>
+        <button class="menu-tab" data-filter="food">Food</button>
+        <button class="menu-tab" data-filter="seasonal">Seasonal</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+
+        <!-- ESPRESSO -->
+        <article class="menu-card glass-card fade-in" data-category="coffee">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500&q=80" alt="Dark Roast Espresso" class="menu-card-img" />
+            <div class="menu-tag">Signature</div>
+            <div class="menu-rating">★ 4.9</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Coffee</div>
+            <h3 class="menu-item-name">Dark Roast Espresso</h3>
+            <p class="menu-item-desc">Double shot pulled slow — rich, velvety, notes of dark chocolate &amp; lingering caramel finish.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹180</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- HONEY LAVENDER LATTE -->
+        <article class="menu-card glass-card fade-in" data-category="coffee">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=500&q=80" alt="Honey Lavender Latte" class="menu-card-img" />
+            <div class="menu-tag popular">Popular</div>
+            <div class="menu-rating">★ 5.0</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Coffee</div>
+            <h3 class="menu-item-name">Honey Lavender Latte</h3>
+            <p class="menu-item-desc">Espresso with steamed oat milk, local honey, lavender syrup. Floral, warm, utterly comforting.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹280</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- COLD BREW -->
+        <article class="menu-card glass-card fade-in" data-category="cold">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1527156231393-7023794f363c?w=500&q=80" alt="Nitro Cold Brew" class="menu-card-img" />
+            <div class="menu-tag">Cold</div>
+            <div class="menu-rating">★ 4.8</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Cold Brew</div>
+            <h3 class="menu-item-name">Nitro Cold Brew</h3>
+            <p class="menu-item-desc">18-hour steeped single-origin, infused with nitrogen. Creamy, velvety, zero sugar.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹320</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- BUTTER CROISSANT -->
+        <article class="menu-card glass-card fade-in" data-category="food">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80" alt="Butter Almond Croissant" class="menu-card-img" />
+            <div class="menu-tag baked">Baked Fresh</div>
+            <div class="menu-rating">★ 4.9</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Pastry</div>
+            <h3 class="menu-item-name">Butter Almond Croissant</h3>
+            <p class="menu-item-desc">Laminated to 72 layers, filled with almond frangipane, dusted with icing sugar.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹220</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SEASONAL -->
+        <article class="menu-card glass-card fade-in seasonal-glow" data-category="seasonal">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80" alt="Saffron Rose Cappuccino" class="menu-card-img" />
+            <div class="menu-tag seasonal">🌸 Seasonal</div>
+            <div class="menu-rating">★ 4.9</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Special</div>
+            <h3 class="menu-item-name">Saffron Rose Cappuccino</h3>
+            <p class="menu-item-desc">Hand-foamed milk, saffron-infused espresso, rose water, cardamom dust. Pure poetry.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹360</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- AVOCADO TOAST -->
+        <article class="menu-card glass-card fade-in" data-category="food">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=500&q=80" alt="Avocado Toast" class="menu-card-img" />
+            <div class="menu-tag chef">Chef's Pick</div>
+            <div class="menu-rating">★ 4.7</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-category">Brunch</div>
+            <h3 class="menu-item-name">Smashed Avo Toast</h3>
+            <p class="menu-item-desc">Sourdough, smashed avocado, poached egg, chilli flakes, microgreens. The brunch essential.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹340</span>
+              <div class="menu-actions">
+                <button class="btn-wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                <button class="btn-order">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="menu-cta fade-in">
+        <a href="#" class="btn btn-primary">
+          <i class="fas fa-utensils"></i>
+          <span>View Full Menu</span>
+        </a>
+        <a href="#" class="btn btn-outline-dark">
+          <i class="fas fa-download"></i>
+          <span>Download PDF Menu</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE / UNIQUE FEATURES ===================== -->
+  <section class="experience-section section" id="experience">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Why We're Different</span>
+        <h2 class="section-title">The Cozy Café <em>Experience</em></h2>
+      </div>
+
+      <div class="experience-grid">
+
+        <!-- COFFEE PASSPORT -->
+        <div class="exp-card glass-card fade-in">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=500&q=80" alt="Coffee Passport" />
+          </div>
+          <div class="exp-icon"><i class="fas fa-passport"></i></div>
+          <h3>Coffee Passport</h3>
+          <p>Try all 12 single-origin beans. Complete your passport and earn a free monthly brew subscription.</p>
+          <a href="#" class="exp-link">Start your journey <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- BARISTA WORKSHOPS -->
+        <div class="exp-card glass-card fade-in">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80" alt="Barista Workshop" />
+          </div>
+          <div class="exp-icon"><i class="fas fa-mortar-pestle"></i></div>
+          <h3>Barista Workshops</h3>
+          <p>Every Saturday at 10 AM — learn latte art, espresso pulling technique, and cupping with our head barista.</p>
+          <a href="#reserve" class="exp-link">Book a workshop <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- READING NOOK -->
+        <div class="exp-card glass-card fade-in">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=500&q=80" alt="Reading Corner" />
+          </div>
+          <div class="exp-icon"><i class="fas fa-book-open"></i></div>
+          <h3>The Reading Nook</h3>
+          <p>500+ curated books. Borrow, read, return — or leave one you love. Our little library for the community.</p>
+          <a href="#" class="exp-link">See the collection <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- BEAN SUBSCRIPTION -->
+        <div class="exp-card glass-card fade-in">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500&q=80" alt="Coffee Beans" />
+          </div>
+          <div class="exp-icon"><i class="fas fa-seedling"></i></div>
+          <h3>Bean Subscription</h3>
+          <p>Fresh roasted single-origin beans delivered to your door every week. Starting ₹799/month.</p>
+          <a href="#" class="exp-link">Subscribe now <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+
+      <!-- COFFEE FLAVOUR WHEEL - Interactive -->
+      <div class="flavour-wheel-section fade-in">
+        <div class="flavour-intro">
+          <h3>Discover Your <em>Flavour Profile</em></h3>
+          <p>Hover over the wheel to explore how our origins differ in taste.</p>
+        </div>
+        <div class="flavour-wheel-wrap">
+          <div class="flavour-wheel" id="flavourWheel">
+            <div class="wheel-center">
+              <span>☕</span>
+              <small>Flavours</small>
+            </div>
+            <div class="wheel-segment seg-1" data-flavor="Chocolate, Caramel, Brown Sugar">
+              <span>Sweet</span>
+            </div>
+            <div class="wheel-segment seg-2" data-flavor="Citrus, Berry, Stone Fruit">
+              <span>Fruity</span>
+            </div>
+            <div class="wheel-segment seg-3" data-flavor="Cedar, Tobacco, Earth">
+              <span>Earthy</span>
+            </div>
+            <div class="wheel-segment seg-4" data-flavor="Jasmine, Rose, Lavender">
+              <span>Floral</span>
+            </div>
+            <div class="wheel-segment seg-5" data-flavor="Cashew, Hazelnut, Walnut">
+              <span>Nutty</span>
+            </div>
+            <div class="wheel-segment seg-6" data-flavor="Black Tea, Herb, Spice">
+              <span>Herbal</span>
+            </div>
+          </div>
+          <div class="flavour-tooltip" id="flavourTooltip">Hover a segment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY SECTION ===================== -->
+  <section class="gallery-section section" id="gallery">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Ambiance</span>
+        <h2 class="section-title">A Glimpse <em>Inside</em></h2>
+        <p class="section-subtitle">Every corner curated for warmth, every moment worth savouring.</p>
+      </div>
+
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item gi-large" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80" alt="Morning light café interior" />
+          <div class="gallery-overlay glass-card"><span>Morning Light</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Latte art" />
+          <div class="gallery-overlay glass-card"><span>Latte Art</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1516743619420-154b70a65fea?w=600&q=80" alt="Barista craft" />
+          <div class="gallery-overlay glass-card"><span>The Craft</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&q=80" alt="Fresh pastries" />
+          <div class="gallery-overlay glass-card"><span>Fresh Bakes</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Window nook" />
+          <div class="gallery-overlay glass-card"><span>Your Corner</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=600&q=80" alt="Evening exterior" />
+          <div class="gallery-overlay glass-card"><span>Evenings Here</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img src="" alt="" id="lightboxImg" />
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <!-- ===================== RESERVE SECTION ===================== -->
+  <section class="reserve-section section" id="reserve">
+    <div class="reserve-bg" style="background-image: url('https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1920&q=80')"></div>
+    <div class="reserve-overlay"></div>
+    <div class="container">
+      <div class="reserve-content fade-in">
+        <div class="reserve-info">
+          <span class="section-label">Reservations</span>
+          <h2 class="section-title" style="color: #FAF3E0;">Reserve Your<br/><em>Perfect Table</em></h2>
+          <p style="color: rgba(250,243,224,0.8);">Choose your spot — window seat, garden table, or our private nook. We'll have everything ready.</p>
+
+          <!-- Real-time seat availability -->
+          <div class="seat-availability">
+            <h4>Today's Availability</h4>
+            <div class="time-slots" id="timeSlots"></div>
+          </div>
+
+          <div class="reserve-contact-hints">
+            <div class="hint-item">
+              <i class="fas fa-clock"></i>
+              <span>Mon–Sun · 7 AM – 10 PM</span>
+            </div>
+            <div class="hint-item">
+              <i class="fas fa-phone"></i>
+              <span>+91 98765 43210</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reserve-form glass-card">
+          <h3>Book a Table</h3>
+          <form id="reserveForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rName">Name</label>
+                <input type="text" id="rName" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="rPhone">Phone</label>
+                <input type="tel" id="rPhone" placeholder="+91 XXXXX XXXXX" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rDate">Date</label>
+                <input type="date" id="rDate" required />
+              </div>
+              <div class="form-group">
+                <label for="rTime">Time</label>
+                <select id="rTime">
+                  <option>07:00 AM</option><option>08:00 AM</option><option>09:00 AM</option>
+                  <option>10:00 AM</option><option>11:00 AM</option><option selected>12:00 PM</option>
+                  <option>01:00 PM</option><option>02:00 PM</option><option>03:00 PM</option>
+                  <option>04:00 PM</option><option>05:00 PM</option><option>06:00 PM</option>
+                  <option>07:00 PM</option><option>08:00 PM</option><option>09:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rGuests">Guests</label>
+                <select id="rGuests">
+                  <option>1 person</option><option selected>2 people</option>
+                  <option>3 people</option><option>4 people</option>
+                  <option>5+ people</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rSeat">Preference</label>
+                <select id="rSeat">
+                  <option>Window Seat</option>
+                  <option>Garden Table</option>
+                  <option>Private Nook</option>
+                  <option>Counter Bar</option>
+                  <option>No preference</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="rNote">Special note</label>
+              <input type="text" id="rNote" placeholder="Birthday? Anniversary? Any dietary needs?" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-check-circle"></i>
+              <span>Confirm Reservation</span>
+            </button>
+            <div class="form-success-msg" id="reserveSuccess"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT SECTION ===================== -->
+  <section class="contact-section section" id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Come Say <em>Hello</em></h2>
+      </div>
+
+      <div class="contact-grid fade-in">
+        <!-- Map Embed -->
+        <div class="map-wrap glass-card">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9850636316!2d77.63700827454777!3d12.978451214699957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16b3e04c0a1f%3A0x15e4e8e0efad02b1!2sIndiranagar%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen loading="lazy">
+          </iframe>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>42 Brew Street, Indiranagar</strong>
+                <span>Bengaluru, Karnataka 560038</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>Open Daily</strong>
+                <span>Mon–Fri: 7 AM – 9 PM · Sat–Sun: 8 AM – 10 PM</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <strong>+91 98765 43210</strong>
+                <span>hello@cozycafe.in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap glass-card">
+          <h3>Send us a message</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="cName">Your Name</label>
+              <input type="text" id="cName" placeholder="Jane Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email</label>
+              <input type="email" id="cEmail" placeholder="jane@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" rows="4" placeholder="Tell us something wonderful..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+            <div class="form-success-msg" id="contactSuccess"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <path d="M13 26c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M20 19v-3M17 17l1.5 2M23 17l-1.5 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              <span>Cozy Café</span>
+            </div>
+            <p>Art of Coffee, Soul of Community.<br/>Brewing happiness since 2010 in Bengaluru.</p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">Our Story</a></li>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Menu</h4>
+            <ul>
+              <li><a href="#">Espresso Drinks</a></li>
+              <li><a href="#">Cold Brew & Iced</a></li>
+              <li><a href="#">Pastries & Bakes</a></li>
+              <li><a href="#">Brunch</a></li>
+              <li><a href="#">Seasonal Specials</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Visit Us</h4>
+            <p>42 Brew Street<br/>Indiranagar, Bengaluru</p>
+            <p>Mon–Fri: 7 AM – 9 PM<br/>Sat–Sun: 8 AM – 10 PM</p>
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+              <input type="email" placeholder="Your email for updates" />
+              <button><i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 Cozy Café. All rights reserved. Made with ☕ in Bengaluru.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JS -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
